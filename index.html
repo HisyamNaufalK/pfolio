@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio V2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap");
+
+      :root {
+        --neon-green: #00ff00;
+        --neon-blue: #00ffff;
+        --dark-bg: #0a0a0a;
+        --darker-bg: #050505;
+        --light-text: #e0e0e0;
+      }
+
+      :root {
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #1a1a1a;
+        --text-primary: #e0e0e0;
+        --text-secondary: #a0a0a0;
+        --accent-green: #00ff00;
+        --accent-blue: #00ffff;
+        --accent-purple: #ff00ff;
+        --glow-strength: 0 0 10px;
+      }
+
+      :root {
+        --bg-pertama: #000; /* Background black for hacker theme */
+        --bg-kedua: #1a1a1a;
+        --text-pertama: #00ff00; /* Neon green */
+        --accent-pertama: #00cc00; /* Darker green for accents */
+        --radar-bg: rgba(
+          0,
+          204,
+          0,
+          0.1
+        ); /* Transparent green for circle background */
+        --radar-border: rgba(0, 255, 0, 0.5); /* Green for radar border */
+        --scan-effect: rgba(0, 255, 0, 0.8); /* Bright green for scan effect */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--light-text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      /* Navbar Styles */
+      .navbar {
+        background-color: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 20px 0;
+        position: relative;
+        z-index: 1000;
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 24px;
+        color: var(--neon-green);
+        text-decoration: none;
+        letter-spacing: 2px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links a {
+        color: var(--light-text);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--neon-green);
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        text-align: center;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 4rem;
+        margin-bottom: 20px;
+        color: var(--neon-green);
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--neon-green);
+        color: var(--darker-bg);
+        text-decoration: none;
+        font-weight: 700;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: var(--darker-bg);
+        color: var(--neon-green);
+        box-shadow: 0 0 20px var(--neon-green);
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #000000, #1a1a1a);
+        z-index: 1;
+      }
+
+      .hero-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      /* About Section */
+      .about {
+        padding: 4rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .about-image {
+        flex: 0 0 300px;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        overflow: hidden;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        filter: grayscale(1) brightness(0.8);
+        transition: filter 0.3s ease;
+      }
+
+      .about-image:hover img {
+        filter: grayscale(0) brightness(1);
+      }
+
+      .about-content {
+        flex: 1;
+        margin-left: 4rem;
+      }
+
+      .about-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #00ff00;
+        text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+        margin-bottom: 1.5rem;
+      }
+
+      .about-bio {
+        font-size: 1.2rem;
+        color: #b3b3b3;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+
+      .about-skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-gap: 1.5rem;
+      }
+
+      .skill-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(0, 255, 0, 0.1);
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .skill-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .skill-icon {
+        font-size: 2.5rem;
+        color: #00ff00;
+        margin-bottom: 1rem;
+      }
+
+      .skill-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .contact-cta {
+        margin-top: 3rem;
+        text-align: center;
+      }
+
+      /* Blog*/
+      .blog-stories {
+        padding: 100px 0;
+        background-color: var(--bg-primary);
+        position: relative;
+      }
+
+      .section-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 50px;
+        color: var(--accent-blue);
+        text-shadow: var(--glow-strength) var(--accent-blue);
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background-color: var(--accent-green);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: -10px;
+        background-color: var(--bg-primary);
+        border: 4px solid var(--accent-green);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      .right {
+        left: 50%;
+      }
+
+      .right::after {
+        left: -10px;
+      }
+
+      .story-content {
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border: 1px solid var(--accent-green);
+        border-radius: 6px;
+        position: relative;
+      }
+
+      .story-date {
+        font-size: 0.9rem;
+        color: var(--accent-green);
+        margin-bottom: 10px;
+      }
+
+      .story-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .story-preview {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      /* Skills */
+      .skills {
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+        font-family: "Courier New", Courier, monospace; /* Monospace font for hacker theme */
+      }
+
+      .skillss-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      .skillss-item {
+        text-align: center;
+        margin: 20px;
+        position: relative;
+      }
+
+      .skillss-circle {
+        width: 240px; /* Size of radar */
+        height: 240px; /* Size of radar */
+        border-radius: 50%;
+        background: var(--radar-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px; /* Font size for percentage */
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 30px var(--accent-pertama),
+          0 0 50px var(--accent-pertama); /* Enhanced glow effect */
+      }
+
+      .wave {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid var(--radar-border);
+        opacity: 0;
+        animation: wave-scan 2s linear infinite; /* Animation for wave scan */
+        transform: translate(-50%, -50%); /* Center the wave */
+      }
+
+      .scan-target {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px; /* Size of scan target */
+        height: 20px; /* Size of scan target */
+        border-radius: 50%;
+        background: var(--scan-effect);
+        opacity: 0;
+        animation: scan-target-animation 2s infinite; /* Animation for scan target */
+        transform: translate(-50%, -50%); /* Center the scan target */
+      }
+
+      .dot {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--scan-effect);
+        opacity: 0; /* Initially hidden */
+        animation: dot-animation 2s linear infinite; /* Animation for dots */
+      }
+
+      /*Project*/
+      h2.project-title {
+        font-family: "Orbitron", sans-serif;
+        color: #39ff14;
+        font-size: 2rem;
+        margin: 60px 0;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        animation: glow 1.3s ease-in-out infinite alternate;
+        border-bottom: 3px solid #39ff14;
+        display: flex; /* Mengubah display menjadi flex */
+        justify-content: center; /* Menempatkan konten di tengah secara horizontal */
+        align-items: center; /* Menempatkan konten di tengah secara vertikal */
+        padding-bottom: 10px;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14,
+            0 0 40px #39ff14;
+        }
+        to {
+          text-shadow: 0 0 20px #39ff14, 0 0 30px #39ff14, 0 0 40px #39ff14,
+            0 0 50px #39ff14;
+        }
+      }
+      .project-section {
+        padding: 50px 0;
+      }
+      .card {
+        background-color: #161b22;
+        border: none;
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+        transform: scale(1);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        box-shadow: 0 4px 20px rgba(0, 255, 128, 0.2);
+      }
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(0, 255, 128, 0.3);
+      }
+      .card img {
+    width: 100%; /* Mengatur lebar gambar menjadi 100% */
+    height: 100%; /* Mengatur tinggi gambar menjadi 100% */
+    object-fit: cover; /* Mengatur gambar untuk memenuhi area dengan crop jika perlu */
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+      .card:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+      }
+      .card-body {
+        padding: 20px;
+      }
+      .card-title {
+        color: #39ff14;
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .card-text {
+        color: #8b949e;
+        text-align: center;
+      }
+      footer {
+        margin-top: 50px;
+        text-align: center;
+        color: #39ff14;
+        padding: 20px;
+        background-color: #161b22;
+      }
+
+      @keyframes wave-scan {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      @keyframes scan-target-animation {
+        0% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: translate(-50%, -50%) scale(1.5);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(2);
+        }
+      }
+
+      @keyframes dot-animation {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .percentage {
+        color: var(--text-pertama);
+        text-shadow: 0 0 15px var(--accent-pertama); /* Glow effect for percentage */
+        z-index: 1; /* Ensure percentage appears above radar */
+      }
+
+      .skillss-name {
+        margin-top: 10px;
+        color: var(--accent-pertama);
+        font-size: 22px; /* Font size for skill names */
+      }
+
+      .section-title {
+        font-size: 36px;
+        color: var(--text-pertama);
+        text-align: center;
+        margin-bottom: 40px;
+        text-shadow: 0 0 15px var(--accent-pertama); /* Glow effect for title */
+      }
+
+      @media (max-width: 768px) {
+        .skill-circle {
+          width: 200px; /* Adjusted for smaller screens */
+          height: 200px; /* Adjusted for smaller screens */
+          font-size: 28px; /* Adjusted font size for smaller screens */
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item.right {
+          left: 0;
+        }
+
+        .timeline-content::after {
+          left: -13px !important;
+        }
+      }
+
+      /* Kontak Section */
+      .contact {
+        padding: 100px 0;
+        background-color: #0c0c0c; /* Background gelap untuk kontras */
+      }
+
+      .section-title {
+        text-align: center;
+        color: #39ff14; /* Hijau neon untuk judul */
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .terminal {
+        background-color: #000000; /* Warna latar belakang terminal */
+        border-radius: 10px;
+        padding: 20px;
+        font-family: "Roboto Mono", monospace; /* Font monospace */
+        position: relative;
+        overflow: hidden;
+        margin: 0 3%;
+      }
+
+      .terminal::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 255, 0, 0.15),
+          rgba(0, 255, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        pointer-events: none;
+      }
+
+      .terminal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .terminal-title {
+        color: #39ff14; /* Hijau neon untuk judul terminal */
+        font-size: 1.5rem;
+      }
+
+      .terminal-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .terminal-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .terminal-button.red {
+        background-color: #ff5f56;
+      }
+      .terminal-button.yellow {
+        background-color: #ffbd2e;
+      }
+      .terminal-button.green {
+        background-color: #27c93f;
+      }
+
+      .terminal-content {
+        color: #39ff14; /* Teks hijau neon */
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 10px;
+        height: 20px;
+        background-color: #39ff14; /* Cursor hijau neon */
+        animation: blink 0.7s infinite; /* Efek kedip */
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Form Kontak */
+      .contact-form {
+        margin-top: 20px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #39ff14; /* Border hijau neon */
+        border-radius: 5px;
+        background-color: #1c1c1c; /* Warna latar belakang input */
+        color: #ffffff; /* Warna teks input */
+        transition: border-color 0.3s, box-shadow 0.3s; /* Efek transisi */
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: #27c93f; /* Border saat fokus */
+        box-shadow: 0 0 5px rgba(39, 201, 63, 0.5); /* Bayangan saat fokus */
+        outline: none; /* Menghilangkan outline default */
+      }
+
+      .contact-form button {
+        background-color: #39ff14; /* Warna tombol hijau neon */
+        color: #000000; /* Warna teks tombol hitam */
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Efek transisi */
+        position: relative; /* Posisi relatif untuk efek */
+        overflow: hidden; /* Menghilangkan overflow */
+      }
+
+      .contact-form button:hover {
+        background-color: #27c93f; /* Warna tombol saat hover */
+        transform: translateY(-2px); /* Mengangkat tombol saat hover */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Bayangan saat hover */
+      }
+
+      .contact-form button:active {
+        transform: translateY(0); /* Mengembalikan posisi tombol saat klik */
+        box-shadow: none; /* Menghilangkan bayangan saat klik */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container navbar-container">
+        <a href="#" class="logo">NanoNaaf</a>
+        <div class="nav-links">
+          <a href="#about">About Me</a>
+          <a href="#education">Education</a>
+          <a href="#skills">Skills</a>
+          <a href="#project">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div id="particles-js" class="hero-particles"></div>
+      <div class="hero-content">
+        <h1>Welcome to MyPortfolio</h1>
+        <p>
+          Exploring the synergy between web development and innovative design.
+        </p>
+        <a href="#project" class="cta-button">Explore Projects</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="about-image">
+        <img
+          src="asset\Pfolio.jpeg"
+          alt="Designer" />
+      </div>
+      <div class="about-content">
+        <h2 class="about-title">About Me</h2>
+        <p class="about-bio">
+          As a student at SMKN 1 Banjar majoring in Software Engineering (RPL), I have a deep interest in technology and futuristic aesthetics. I am always eager to explore the latest innovations and apply them in my projects. My hobbies include listening to music and playing games, particularly in the FPS, action, and strategy genres, which help me sharpen my creativity and strategic thinking in design. As a beginner web developer and UI/UX designer, I prefer to focus on frontend development, where I can create engaging and interactive interfaces. My design approach aims to provide an intuitive and captivating user experience that leaves a lasting impression on every user.
+        </p>
+        <div class="about-skills">
+          <div class="skill-item">
+            <i class="skill-icon">&#128295;</i>
+            <h3 class="skill-name">Web Developer</h3>
+          </div>
+          <div class="skill-item">
+            <i class="skill-icon">&#127919;</i>
+            <h3 class="skill-name">Web Designer</h3>
+          </div>
+          <div class="skill-item">
+            <i class="skill-icon">&#128736;</i>
+            <h3 class="skill-name">UI/UX Design</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="education" class="blog-stories">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+          <div class="timeline-item left">
+            <div class="story-content">
+              <div class="story-date"> 2013 - 2019</div>
+              <h3 class="story-title">
+                SDN 1 Janggala
+              </h3>
+              <p class="story-preview">
+                During my elementary school years, I developed a love for nature and technology. I enjoyed exploring the outdoors and learning about the environment while also discovering my fascination with computers and simple programming. These experiences sparked my curiosity and laid the groundwork for my future interests in technology and design.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="story-content">
+              <div class="story-date">2019 - 2021</div>
+              <h3 class="story-title">
+                MTS Asysyifaa Cidolog
+              </h3>
+              <p class="story-preview">
+                During my middle school years, I began to develop a keen interest in technology and web development. I enjoyed learning about how websites work and started experimenting with creating my own simple web pages. This passion for technology fueled my curiosity and set me on the path to becoming a web developer.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="story-content">
+              <div class="story-date">2021 - 2024</div>
+              <h3 class="story-title">
+                SMK Negeri 1 Banjar
+              </h3>
+              <p class="story-preview">
+                In high school, I chose to pursue Software Engineering (RPL) because of my growing curiosity about technology. I wanted to deepen my understanding of how software is developed and learn the skills needed to create impactful digital solutions. This decision allowed me to explore various aspects of technology, from programming to web development, and fueled my passion for innovation in the tech field.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skillss-container">
+          <div class="skillss-item">
+            <div class="skillss-circle" id="radar1">
+              <div class="wave"></div>
+              <!-- Wave element added -->
+              <div class="scan-target"></div>
+              <!-- Scan target element added -->
+              <div class="percentage">90%</div>
+            </div>
+            <p class="skillss-name">HTML</p>
+          </div>
+          <div class="skillss-item">
+            <div class="skillss-circle" id="radar2">
+              <div class="wave"></div>
+              <!-- Wave element added -->
+              <div class="scan-target"></div>
+              <!-- Scan target element added -->
+              <div class="percentage">85%</div>
+            </div>
+            <p class="skillss-name">CSS</p>
+          </div>
+          <div class="skillss-item">
+            <div class="skillss-circle" id="radar3">
+              <div class="wave"></div>
+              <!-- Wave element added -->
+              <div class="scan-target"></div>
+              <!-- Scan target element added -->
+              <div class="percentage">35%</div>
+            </div>
+            <p class="skillss-name">JavaScript</p>
+          </div>
+          <div class="skillss-item">
+            <div class="skillss-circle" id="radar4">
+              <div class="wave"></div>
+              <!-- Wave element added -->
+              <div class="scan-target"></div>
+              <!-- Scan target element added -->
+              <div class="percentage">30%</div>
+            </div>
+            <p class="skillss-name">PHP</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- project -->
+    <section id="project" class="project-section">
+      <div class="container">
+        <h2 class="project-title">Project</h2>
+        <div class="row">
+          <!-- Project 1 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <img
+                src="asset\Screenshot 2023-10-26 072838.png"
+                class="card-img-top"
+                alt="Project 1" />
+              <div class="card-body">
+                <h5 class="card-title">Project 1</h5>
+                <p class="card-text">Simple Website</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <img
+                src="asset\Screenshot 2023-10-26 073003.png"
+                class="card-img-top"
+                alt="Project 2" />
+              <div class="card-body">
+                <h5 class="card-title">Project 2</h5>
+                <p class="card-text">Simple Project</p>
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <img
+                src="asset\Screenshot 2023-10-26 073336.png"
+                class="card-img-top"
+                alt="Project 3" />
+              <div class="card-body">
+                <h5 class="card-title">Project 3</h5>
+                <p class="card-text">Learning Opacity</p>
+              </div>
+            </div>
+          </div>
+<!-- Project 4 -->
+<div class="col-lg-4 col-md-6 mb-4">
+<div class="card">
+<img
+src="asset\Screenshot 2024-10-20 231632.png"
+class="card-img-top"
+alt="Project 4" />
+<div class="card-body">
+<h5 class="card-title">Project 4</h5>
+<p class="card-text">Learning Table v1</p>
+</div>
+</div>
+</div>
+<!-- Project 5 -->
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+  <img
+  src="asset\p.png"
+  class="card-img-top"
+  alt="Project 5" />
+  <div class="card-body">
+  <h5 class="card-title">Project 5</h5>
+  <p class="card-text">Learning Table v2</p>
+  </div>
+  </div>
+  </div>
+<!-- Project 6 -->
+<div class="col-lg-4 col-md-6 mb-4">
+<div class="card">
+<img
+src="asset\samdrink.png"
+class="card-img-top"
+alt="Project 6" />
+<div class="card-body">
+<h5 class="card-title">Project 6</h5>
+<p class="card-text">Project Landing Page</p>
+</div>
+</div>
+</div>
+<!-- Project 7 -->
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+  <img
+  src="asset\pfolio.png"
+  class="card-img-top"
+  alt="Project 7" />
+  <div class="card-body">
+  <h5 class="card-title">Project 7</h5>
+  <p class="card-text">Portfolio v1</p>
+  </div>
+  </div>
+  </div>
+  <!-- Project 8 -->
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+  <img
+  src="asset\Screenshot 2024-10-20 232211.png"
+  class="card-img-top"
+  alt="Project 8" />
+  <div class="card-body">
+  <h5 class="card-title">Project 8</h5>
+  <p class="card-text">Learning PHP</p>
+  </div>
+  </div>
+  </div>
+  <!-- Project 9 -->
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+  <img
+  src="asset\Screenshot 2024-10-20 232308.png"
+  class="card-img-top"
+  alt="Project 9" />
+  <div class="card-body">
+  <h5 class="card-title">Project 9</h5>
+  <p class="card-text">Learning PHP Login & Register Multy user</p>
+  </div>
+  </div>
+  </div>
+  <!-- Project 10 -->
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+  <img
+  src="asset\home pklm.png"
+  class="card-img-top"
+  alt="Project 10" />
+  <div class="card-body">
+  <h5 class="card-title">Project 10</h5>
+  <p class="card-text">Internship Project Management </p>
+  </div>
+  </div>
+  </div>
+  <!-- Project 11 -->
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+  <img
+  src="asset\home lbry.png"
+  class="card-img-top"
+  alt="Project 11" />
+  <div class="card-body">
+  <h5 class="card-title">Project 11</h5>
+  <p class="card-text">Project Library Management </p>
+  </div>
+  </div>
+  </div>
+  <!-- Project 12 -->
+<div class="col-lg-4 col-md-6 mb-4">
+  <div class="card">
+  <img
+  src="asset\Screenshot 2023-10-31 200414.png"
+  class="card-img-top"
+  alt="Project 12" />
+  <div class="card-body">
+  <h5 class="card-title">Project 12</h5>
+  <p class="card-text">Upcoming project coming soon. </p>
+  </div>
+  </div>
+  </div>
+<!-- Add more projects as needed -->
+</div>
+</div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Here</h2>
+        <div class="terminal">
+          <div class="terminal-header">
+            <span class="terminal-title">NanoNaaf Terminal</span>
+            <div class="terminal-buttons">
+              <span class="terminal-button red"></span>
+              <span class="terminal-button yellow"></span>
+              <span class="terminal-button green"></span>
+            </div>
+          </div>
+          <div class="terminal-content">
+            <p>> Accessing contact information...</p>
+            <p>> Please fill out the form below to get in touch with us.</p>
+            <div class="contact-form">
+              <input type="text" placeholder="Your Name" required />
+              <input type="email" placeholder="Your Email" required />
+              <textarea rows="4" placeholder="Your Message" required></textarea>
+              <button type="submit">Send</button>
+            </div>
+            <p>
+              > Message sent! Thank you for contacting us.<span class="cursor"></span>
+            </p>
+            
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 Project Gallery | All Rights Reserved</p>
+    </footer>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: "#00ff00" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00ff00",
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 6,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+        },
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+        },
+        modes: {
+          repulse: { distance: 100, duration: 0.4 },
+          push: { particles_nb: 4 },
+        },
+      },
+      retina_detect: true,
+    });
+
+    // Intersection Observer for timeline items
+    const observerOptions = {
+      root: null,
+      threshold: 0.5,
+      rootMargin: "0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".timeline-item").forEach((item) => {
+      observer.observe(item);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
+  </script>
+  <script>
+    function createDot(radarId) {
+      const radar = document.getElementById(radarId);
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+
+      // Random size and position
+      const size = Math.random() * 10 + 5; // Size between 5 and 15px
+      dot.style.width = `${size}px`;
+      dot.style.height = `${size}px`;
+
+      const x = Math.random() * 100; // Percentage of width
+      const y = Math.random() * 100; // Percentage of height
+      dot.style.left = `${x}%`;
+      dot.style.top = `${y}%`;
+
+      // Add animation
+      dot.style.animationDuration = `${Math.random() * 2 + 1}s`; // Random duration between 1 and 3 seconds
+      dot.style.animationDelay = `${Math.random() * 2}s`; // Random delay
+
+      radar.appendChild(dot);
+
+      // Remove dot after animation
+      dot.addEventListener("animationend", () => {
+        dot.remove();
+      });
+    }
+
+    function generateDots() {
+      const radarIds = ["radar1", "radar2", "radar3", "radar4"];
+      setInterval(() => {
+        const randomRadar =
+          radarIds[Math.floor(Math.random() * radarIds.length)];
+        createDot(randomRadar);
+      }, 1000); // Create a dot every second
+    }
+
+    // Start generating dots
+    generateDots();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>
